@@ -1,14 +1,24 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
+<ion-header mode="ios" collapse="condense" translucent="true">
+  <ion-toolbar mode="ios" color="light">
+    <ion-title size="small" color="dark">
+      Barcode and QR-code Scanner
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+<ion-content padding>
+  <ion-item mode="ios">
+    <ion-input type="text" placeholder="Enter code" mode="ios" [(ngModel)]="qrData"></ion-input>
+  </ion-item>
+  <ion-button expand="full" (click)="createCode()" color="dark" mode="ios" expand="block"><ion-icon name="barcode" slot="start"></ion-icon>Create Code</ion-button>
+  <ion-button expand="full" (click)="scanCode()" color="medium" mode="ios" expand="block"><ion-icon name="qr-scanner" slot="start"></ion-icon>Scann Code</ion-button>
+  <ion-card *ngIf="createCode" mode="ios">
+    <ngx-qrcode [qrc-value]="createdCode"></ngx-qrcode>
+    <p>{{createdCode}}</p>
+  </ion-card>
+  <ion-card *ngIf="scannerCode" mode="ios">
+    <ion-card-content mode="ios">
+      <h1> result:{{scannerCode}}</h1>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
